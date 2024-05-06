@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Management</title>
+    <style>
+        ul{
+            padding: 5px;
+            list-style: none;
+        }
+        ul li {
+            margin: 10px 5px;
+            padding: 5px;
+        }
+        ul li a{
+            text-decoration: none;
+            background-color: rgba(128, 128, 128, 0.15);
+            padding: 7px 10px ;
+            margin: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h2>Welcome {{request.user}}</h2>
+        
+        <ul>
+            <li><a href="api/vendors/">Vendors List</a></li>
+            <li><a href="api/purchase_orders/">Purchase Orders List</a></li>
+            {% if request.user.is_authenticated %}
+                {% if request.user.is_superuser %}
+                <li><a href="admin">Admin</a></li>
+                {%endif%}
+            {%else%}
+            <li><a href="api-auth/login/">User Login</a></li>
+            {%endif%}
+            <li><a href="auth/users/">Create New User</a></li>
+        </ul>
+    </center>
+</body>
+</html>
